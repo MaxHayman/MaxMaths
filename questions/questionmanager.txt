@@ -1,0 +1,29 @@
+<?
+class QuestionManager
+{
+
+	private static $module;
+	private static $type;
+	private $question;
+
+	function init($module, $type)
+	{
+		include($module + "/" + $type);
+		$question = new Question();
+	}
+
+	function generateQuestion()
+	{	
+		return $question->generateQuestion();
+	}
+
+	function generateAnswer()
+	{	
+		return $question->generateAnswer();
+	}
+
+	function generateHelp()
+	{	
+		return $question->generateHelp();
+	}
+}
