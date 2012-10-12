@@ -22,19 +22,33 @@ if($info)
 		break;
 	}
 }
-switch($module)
+else
 {
-	case "m1":
-		$questionmanager = new QuestionManager();
-		$questionmanager->init($module,$type);
-		$questionmanager->generateQuestion();
-	break;
+	//side menu bar
+	include("php/menu.php");
+	Menu::show();
+	
+	switch($module)
+	{
+		case "m1":
+			$questionmanager = new QuestionManager();
+			$questionmanager->init($module,$type);
+			$questionmanager->generateQuestion();
+		break;
 
-	case "home":
-	default:
-		include('php/home.php');
-	break;
+		case "login":
+			include('php/login.php');
+		break;
+		
+		case "account":
+			include('php/account.php');
+		break;
+			
+		case "home":
+		default:
+			include('php/home.php');
+		break;
+	}
 }
-
 mysql_close();
 ?>

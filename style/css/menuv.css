@@ -1,0 +1,85 @@
+
+/* CSS Popout menuv */
+
+/* Fix IE. Hide from IE Mac \*/
+* html #menuv ul li{float:left;height:1%;}
+* html #menuv ul li a{height:1%;}
+/* End */
+
+#menuv		/* position, size, and font of  menu */
+	{	
+	position:absolute;	
+	top:19em;
+	left:2em;
+	z-index: 10;
+	width: 8em;						/* [1] width of menu item (i.e., box) */
+	text-align: center;
+	font-size: 0.9em;
+	font-family: helvetica, arial, geneva, sans-serif;
+	}
+
+#menuv a
+	{
+	width: 100%;
+	display:block;						
+	padding-top: 0.2em;						/* expands menu box vertically*/
+	padding-bottom: 0.2em;
+	border-bottom:1px solid #555;		/* adds bottom border */
+	white-space:nowrap;
+	}
+
+#menuv a, #menuv a:visited				/* all menus at rest */
+	{
+	color: white;
+	background-color: royalblue;
+	text-decoration:none;				/* removes underlines from links */
+	}
+
+#menuv a.parent, #menuv a.parent:hover 	/* attaches parent-arrow on all parents */
+	{
+	background-image: url(nav_white.gif);
+	background-position: right center;
+	background-repeat: no-repeat;
+	}
+
+#menuv a:hover				/* all menus on mouse-over */
+	{
+	color: white;
+	background-color: cornflowerblue;
+	}
+		
+#menuv li
+	{
+	list-style-type:none;		/* removes bullets */
+	}
+	
+#menuv ul li
+	{
+	position:relative;
+	}
+
+#menuv li ul
+	{
+	position: absolute;
+	top: 0;
+	left: 8em;				/* distance from  left menu (this should be the same as width value in #menuv [1]) above */
+	display: none;
+	}
+
+div#menuv ul, #menuv ul ul, div#menuv ul ul ul
+	{
+	margin:0;				/* keeps the menu parts together */
+	padding:0;
+	width: 8em;			/* width of sub menus  (this should be the same as width value in #menuv [1]) above */
+	}
+
+div#menuv ul ul, div#menuv ul ul ul, div#menuv ul li:hover ul ul, div#menuv ul li:hover ul ul ul
+	{
+	display: none;
+	}
+
+div#menuv ul li:hover ul, div#menuv ul ul li:hover ul, div#menuv ul ul ul li:hover ul
+	{
+	display: block;
+	}
+	
