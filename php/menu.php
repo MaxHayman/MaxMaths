@@ -3,6 +3,13 @@ class Menu
 {
 	function Show()
 	{
+		if(Session::get('loggedin'))
+			$account = '<li><a href="?module=account">My Account</a></li>
+						<li><a href="?module=logout">[Logout]</a></li>';
+		else
+			$account = '<li><a href="?module=register">[Register]</a></li>
+						<li><a href="?module=login">[Login]</a></li>';
+	
 		echo '
 		<!--[if lt IE 7]>
 			<style type="text/css" media="screen">
@@ -16,7 +23,7 @@ class Menu
 		<div id="menuv">
 			<ul>
 				<li><a href="?module=home">Home</a></li>
-				<li><a href="?module=login">[Login]</a></li>
+				'.$account.'
 				<!--<li><a href="#" class="parent">Questions</a>
 				<ul>
 					<li><a href="?module=m1&type=collisions">Two particles colliding and then separating </a></li>
@@ -24,9 +31,6 @@ class Menu
 					<li><a href="?module=m1&type=kinematics">Kinematics of a particle moving in a straight line </a></li>
 				</ul>
 				</li>-->
-				<li><a href="stats.php">Website Statistics</a></li>
-				<li><a href="stats.php">Add Someone</a></li>
-				<li><a href="stats.php">Contact</a></li>
 			</ul>
 			
 		</div> 	<!-- end the menuv-container div -->  

@@ -1,54 +1,93 @@
 <?php
-
-include('questions/questionmanager.php');
-
-$info = isset($_REQUEST['info']) ? $_REQUEST['info'] : null;
-$extrainfo = isset($_REQUEST['extrainfo']) ? $_REQUEST['extrainfo'] : null;
-$module = isset($_REQUEST['module']) ? $_REQUEST['module'] : null;
-$type = isset($_REQUEST['type']) ? $_REQUEST['type'] : null;
-
-//Connect to database
-mysql_connect(localhost,"admin","pass");
-mysql_select_db("mathsdb");
-
-if($info)
+class Main
 {
-	switch($info)
+	public static function getRoot()
 	{
-		case "diagram":
-			$questionmanager = new QuestionManager();
-			$questionmanager->init($module,$type);
-			$questionmanager->generateDiagram($extrainfo);
-		break;
+		return Config::$config['website']['root_file'];
 	}
-}
-else
-{
-	//side menu bar
-	include("php/menu.php");
-	Menu::show();
 	
-	switch($module)
+	public static function getRootHTTP()
 	{
-		case "m1":
-			$questionmanager = new QuestionManager();
-			$questionmanager->init($module,$type);
-			$questionmanager->generateQuestion();
-		break;
-
-		case "login":
-			include('php/login.php');
-		break;
+		return Config::$config['website']['root_http'];
+	}
+	
+	public static function redirect($href,$time="1")
+	{
+		echo 'You will be automatically redirected in '.$time.' second(s). <a href="'.$href.'">(Click here if you do not wish to wait.)</a>';
+		echo '<meta http-equiv="refresh" content="'.$time.';url='.$href.'">';
+		return true;
+	}
+	
+	public static function Build()
+	{
+		include("config.php");
 		
-		case "account":
-			include('php/account.php');
-		break;
+		require_once(Main::getRoot()."/php/functions/mysql.php");
+		require_once(Main::getRoot()."/php/functions/session.php");
+		Session::Load();
+		
+		include('questions/questionmanager.php');
+
+		$info = isset($_REQUEST['info']) ? $_REQUEST['info'] : null;
+		$extrainfo = isset($_REQUEST['extrainfo']) ? $_REQUEST['extrainfo'] : null;
+		$module = isset($_REQUEST['module']) ? $_REQUEST['module'] : null;
+		$type = isset($_REQUEST['type']) ? $_REQUEST['type'] : null;
+
+		if($info)
+		{
+			switch($info)
+			{
+				case "diagram":
+					$questionmanager = new QuestionManager();
+					$questionmanager->init($module,$type);
+					$questionmanager->generateDiagram($extrainfo);
+				break;
+			}
+		}
+		else
+		{
+			//side menu bar
+			include("php/menu.php");
+			Menu::show();
 			
-		case "home":
-		default:
-			include('php/home.php');
-		break;
+			switch($module)
+			{
+				case "m1":
+					$questionmanager = new QuestionManager();
+					$questionmanager->init($module,$type);
+					$questionmanager->generateQuestion();
+				break;
+
+				case "login":
+					include('php/login.php');
+				break;
+				
+				case "logout":
+					include('php/logout.php');
+				break;	
+				
+				case "account":
+					include('php/account.php');
+				break;
+				
+				case "admin":
+					include('php/admin.php');
+				break;	
+				
+				case "staff":
+					include('php/staff.php');
+				break;	
+				
+				case "home":
+				default:
+					include('php/home.php');
+				break;
+			}
+		}
+		Session::Save();
+		MySQL::Close();
+	
 	}
 }
-mysql_close();
+Main::Build();
 ?>
