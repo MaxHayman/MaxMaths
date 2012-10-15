@@ -2,18 +2,35 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost_3306
-Source Server Version : 50527
+Source Server Version : 50513
 Source Host           : localhost:3306
 Source Database       : mathsdb
 
 Target Server Type    : MYSQL
-Target Server Version : 50527
+Target Server Version : 50513
 File Encoding         : 65001
 
-Date: 2012-10-15 17:26:28
+Date: 2012-10-15 22:02:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `classes`
+-- ----------------------------
+DROP TABLE IF EXISTS `classes`;
+CREATE TABLE `classes` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `instution` int(10) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `teacher` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of classes
+-- ----------------------------
+INSERT INTO `classes` VALUES ('1', '1', '13A', 'Mrs Angel/Mr Mammen');
 
 -- ----------------------------
 -- Table structure for `institutions`
@@ -21,7 +38,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `institutions`;
 CREATE TABLE `institutions` (
   `id` int(10) NOT NULL,
-  `name` varchar(20) NOT NULL,
+  `name` varchar(50) NOT NULL,
   `subend` int(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -29,6 +46,7 @@ CREATE TABLE `institutions` (
 -- ----------------------------
 -- Records of institutions
 -- ----------------------------
+INSERT INTO `institutions` VALUES ('1', 'Chingford Foundation School', '1');
 
 -- ----------------------------
 -- Table structure for `questions`
@@ -41,7 +59,7 @@ CREATE TABLE `questions` (
   `vars` varchar(50) NOT NULL,
   `answer` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=356 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=358 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of questions
@@ -400,6 +418,27 @@ INSERT INTO `questions` VALUES ('352', 'm1', 'kinematics', 'vo=28;t=30;vp=53;t2=
 INSERT INTO `questions` VALUES ('353', 'm1', 'collisions', 'imp=60.84;qu=0;qv=7.6;qm=8;pu=7.4;pv=0.64;pm=9', 'lol');
 INSERT INTO `questions` VALUES ('354', 'm1', 'collisions', 'imp=10;qu=0;qv=5;qm=2;pu=1.5;pv=0.25;pm=8', 'lol');
 INSERT INTO `questions` VALUES ('355', 'm1', 'collisions', 'imp=38;qu=0;qv=7.6;qm=5;pu=6.9;pv=-0.7;pm=5', 'lol');
+INSERT INTO `questions` VALUES ('356', 'm1', 'collisions', 'imp=9;qu=0;qv=9;qm=1;pu=6.9;pv=5.1;pm=5', 'lol');
+INSERT INTO `questions` VALUES ('357', 'm1', 'collisions', 'imp=40;qu=0;qv=8;qm=5;pu=9.8;pv=5.8;pm=10', 'lol');
+
+-- ----------------------------
+-- Table structure for `sessions`
+-- ----------------------------
+DROP TABLE IF EXISTS `sessions`;
+CREATE TABLE `sessions` (
+  `ip_address` varchar(255) NOT NULL DEFAULT '',
+  `session_id` varchar(255) NOT NULL DEFAULT '',
+  `serial` mediumtext CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `lastaction` int(255) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ip_address`),
+  KEY `session_id` (`session_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of sessions
+-- ----------------------------
+INSERT INTO `sessions` VALUES ('127.0.0.1', '000000', 0x613A31333A7B733A31313A226372656174655F64617465223B693A313335303332313530303B733A31313A226372656174655F61646472223B733A393A223132372E302E302E31223B733A31313A22696E737469747574656964223B693A313B733A373A227374796C656964223B693A313B733A31313A226C6173745F616374696F6E223B693A313335303333333937393B733A383A226C6173745F75726C223B733A33383A22687474703A2F2F3132372E302E302E312F6D617468732F3F6D6F64756C653D6163636F756E74223B733A383A226C6F67676564696E223B623A313B733A353A2261646D696E223B623A303B733A353A227374616666223B623A303B733A323A226964223B733A313A2231223B733A353A22656D61696C223B733A32353A226D61786861796D616E406D61786861796D616E2E636F2E756B223B733A383A226A6F696E64617465223B733A313A2231223B733A31313A22696E737469747574696F6E223B733A313A2231223B7D, '1350333979');
+INSERT INTO `sessions` VALUES ('192.168.0.6', '000000', 0x613A31333A7B733A31313A226372656174655F64617465223B693A313335303332333534393B733A31313A226372656174655F61646472223B733A31313A223139322E3136382E302E36223B733A31313A22696E737469747574656964223B693A303B733A373A227374796C656964223B693A313B733A31313A226C6173745F616374696F6E223B693A313335303333313538303B733A383A226C6173745F75726C223B733A37393A22687474703A2F2F3139322E3136382E302E31362F6D617468732F3F6D6F64756C653D6D3126747970653D636F6C6C6973696F6E7326696E666F3D6469616772616D266578747261696E666F3D333537223B733A383A226C6F67676564696E223B623A303B733A353A2261646D696E223B623A303B733A353A227374616666223B623A303B733A323A226964223B733A313A2231223B733A353A22656D61696C223B733A32353A226D61786861796D616E406D61786861796D616E2E636F2E756B223B733A383A226A6F696E64617465223B733A313A2231223B733A31313A22696E737469747574696F6E223B733A313A2231223B7D, '1350331580');
 
 -- ----------------------------
 -- Table structure for `tips`
@@ -451,3 +490,18 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
+INSERT INTO `users` VALUES ('1', 'maxhayman@maxhayman.co.uk', 'password', '1', 'Max', 'Hayman', '1');
+
+-- ----------------------------
+-- Table structure for `user_classes`
+-- ----------------------------
+DROP TABLE IF EXISTS `user_classes`;
+CREATE TABLE `user_classes` (
+  `userid` int(10) NOT NULL,
+  `classid` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of user_classes
+-- ----------------------------
+INSERT INTO `user_classes` VALUES ('1', '1');

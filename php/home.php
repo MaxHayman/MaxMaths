@@ -1,3 +1,12 @@
+<?php
+/* ======================================================
+   == Max Maths Website System                         ==
+   ======================================================
+   == Copyright (C) Max Hayman 2012                    ==
+   == Author: Max Hayman <maxhayman@maxhayman.co.uk>   ==
+   ======================================================
+*/
+?>
 <html>
 <title>Edexcel Maths Question Generator</title>
 <body>

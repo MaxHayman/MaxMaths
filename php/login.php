@@ -1,5 +1,11 @@
 <?php
-
+/* ======================================================
+   == Max Maths Website System                         ==
+   ======================================================
+   == Copyright (C) Max Hayman 2012                    ==
+   == Author: Max Hayman <maxhayman@maxhayman.co.uk>   ==
+   ======================================================
+*/
 if(Session::get('loggedin'))
 	return;
 	
