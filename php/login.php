@@ -40,7 +40,7 @@ if(Session::get('loggedin'))
 <center>
 <img src="images/banner.jpg" height="111" width="395"><br>
 <h1>Login</h1>
-<? if(isset($error)) { echo $error."<br><br>"; } ?> 
+<?php if(isset($error)) { echo $error."<br><br>"; } ?> 
 <form method="POST" action="?module=login">
   Email:<br><input type="text" name="email" size="30" /><br />
   Password:<br><input type="password" name="password" size="30" /><br />

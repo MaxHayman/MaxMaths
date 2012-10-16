@@ -69,7 +69,9 @@ order by classes.id");
  <form><tr><td>Create New Class</td><td>Name: <input type="text" name="newclassname"></td><td></td></tr>
  <tr><td></td><td>Teacher: <input type="text" name="newclassname"></td><td><input type="submit" value="Submit"></td></tr></form>
  <tr><td>Set Homework for class</td><td><select><?php echo $classes; ?></select></td><td><input type="submit" value="Submit"></td>
-</center>
+<form><tr><td>Assign Person to class</td><td>Student: <select><?php echo $classes; ?></select></td><td></td></tr>
+  <tr><td></td><td>Class: <select><?php echo $classes; ?></select></td><td><input type="submit" value="Submit"></td></tr></form>
+ </center>
 </body>
 </html>
 <?php 
