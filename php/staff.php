@@ -1,13 +1,37 @@
 <?php
 /* ======================================================
-   == Max Maths Website System                         ==
+   == Max Maths Website System                                                       ==
    ======================================================
-   == Copyright (C) Max Hayman 2012                    ==
-   == Author: Max Hayman <maxhayman@maxhayman.co.uk>   ==
+   == Copyright (C) Max Hayman 2012       					                ==
+   == Author: Max Hayman <maxhayman@maxhayman.co.uk>        ==
    ======================================================
 */
 if(Session::get('loggedin'))
 {
+ if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
+ // ON POST
+	$type = $_POST['type'];
+	switch($type)
+	{
+		case 'newclass':
+			$name = $_POST['name'];
+			$teacher = $_POST['teacher'];
+		break;
+		
+		case 'newhomework':
+		
+		break;
+		
+		case 'assignpersonclass':
+			$student = $_POST['student'];
+			$class = $_POST['class'];
+		break;
+	}
+	
+ }
+ else
+ {
+	// DEFAULT PAGE
 	// GET CLASSES
 	$q = mysql_query("select users.firstname,
 		users.lastname,
@@ -67,12 +91,18 @@ order by classes.id");
  <br>
  <table>
  <form><tr><td>Create New Class</td><td>Name: <input type="text" name="newclassname"></td><td></td></tr>
- <tr><td></td><td>Teacher: <input type="text" name="newclassname"></td><td><input type="submit" value="Submit"></td></tr></form>
- <tr><td>Set Homework for class</td><td><select><?php echo $classes; ?></select></td><td><input type="submit" value="Submit"></td>
+ <tr><td></td><td>Teacher: <input type="text" name="newclassname"></td><td><input type="submit" value="Submit"></td></tr>
+ <input type="hidden" name="type" value="newclass"></form>
+ 
+ <form><tr><td>Set Homework for class</td><td><select><?php echo $classes; ?></selecta></td><td><input type="submit" value="Submit"></td>
+ <input type="hidden" name="type" value="newhomework"></form>
+ 
 <form><tr><td>Assign Person to class</td><td>Student: <select><?php echo $classes; ?></select></td><td></td></tr>
-  <tr><td></td><td>Class: <select><?php echo $classes; ?></select></td><td><input type="submit" value="Submit"></td></tr></form>
+  <tr><td></td><td>Class: <select><?php echo $classes; ?></select></td><td><input type="submit" value="Submit"></td></tr>
+  <input type="hidden" name="type" value="assignpersonclass"></form>
  </center>
 </body>
 </html>
 <?php 
+}
 }?>

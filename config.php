@@ -18,8 +18,8 @@ class Config
 		(
 			'name' => 'Mathematics',
 	
-			'root_file' => 'I:/www/maths',
-			'root_http' => 'http://127.0.0.1',
+			'root_file' => 'C:\xampp\htdocs\maths',
+			'root_http' => 'http://127.0.0.1/maths',
 		),
 
 		// Database Configuration
